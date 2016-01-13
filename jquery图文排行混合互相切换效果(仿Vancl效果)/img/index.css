@@ -1,0 +1,38 @@
+/* Download by http://sc.xueit.com */
+.product-area {
+	MARGIN-TOP: 5px
+}
+.product-area_banner1 {
+	DISPLAY: inline
+}
+.product-area_banner2 {
+	DISPLAY: inline
+}
+.dropList {
+	DISPLAY: inline
+}
+.product-area_banner1 {
+	WIDTH: 445px; MARGIN-RIGHT: 5px; HEIGHT: 300px
+}
+.product-area_banner2 {
+	WIDTH: 280px; HEIGHT: 300px
+}
+.dropList {
+	WIDTH: 235px; BORDER-BOTTOM: #ebebeb 1px solid; HEIGHT: 300px
+}
+.dropList DL DT {
+	BORDER-RIGHT: #ebebeb 1px solid; BORDER-TOP: #ebebeb 1px solid; BACKGROUND: url(../images_2010/drop-li_img.gif) no-repeat 8px 12px; BORDER-LEFT: #ebebeb 1px solid; WIDTH: 233px; TEXT-INDENT: 20px; LINE-HEIGHT: 29px; BORDER-BOTTOM: #ebebeb 1px; HEIGHT: 29px
+}
+.dropList DL DT P {
+	BACKGROUND: url(../images_2010/drop-li-p_img.gif) no-repeat right 11px; CURSOR: pointer; MARGIN-RIGHT: 8px
+}
+.dropList DL DT P.dropList-hover {
+	BACKGROUND: url(../images_2010/drop-li-p-img2.gif) no-repeat right 13px; COLOR: #a10000; MARGIN-RIGHT: 7px
+}
+.dropList DL DD {
+	DISPLAY: none; OVERFLOW: hidden; WIDTH: 235px; HEIGHT: 120px
+}
+.dropList DL DD IMG {
+	BORDER-TOP: #ebebeb 1px solid
+}
+

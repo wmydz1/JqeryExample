@@ -1,0 +1,133 @@
+/*  
+Theme Name: Airos Chou
+Theme URI: http://www.sunflowamedia.com
+Download by http://sc.xueit.com
+Description: Web Design examples
+*/
+
+body {
+	font-size: 12px;
+	margin: 0;
+	padding: 0;
+}
+p,h1,h2,h3,h4 {
+	margin: 0;
+	padding: 0;
+}
+
+/*--------------------------------------------
+container
+--------------------------------------------*/
+div.examples_body {
+     width: 750px;
+	 margin: 50px auto 0 auto;
+	 clear: both;
+	 overflow: hidden;
+}
+h2.title_name {
+     font-family: normal Georgia,'Times New Roman',Times,serif;
+	 font-weight: normal;
+     font-size: 4em;
+     padding: 50px 0 20px 0;
+     text-align: center;
+}
+h2.title_name span {
+	 font-family: normal Georgia,'Times New Roman',Times,serif;
+     color: #AAA;
+     font-size: 0.9em;
+}
+h2.title_name small {
+     color: #AAAAAA;
+     display: block;
+     font-family: normal Verdana,Arial,Helvetica,sans-serif;
+     font-size: 0.2em;
+     letter-spacing: 1.0em;
+     text-transform: uppercase;
+}
+div.examples_body h3 {
+     color: #555;
+     font-size: 130%;
+	 padding-bottom: 15px;
+	 margin-bottom: 15px;
+}
+p.demo_btn {
+     width: 750px;
+	 margin: 30px auto;
+	 font-size: 0;
+	 text-indent: -9999px;
+	 clear: both;
+	 overflow: hidden;
+}
+p.demo_btn a {
+     width: 160px;
+	 height: 41px;
+	 float: right;
+     background: url(../images/Download_Button.gif) no-repeat;
+}
+p.demo_btn a:hover {
+     background: url(../images/Download_Button_o.gif) no-repeat;
+}
+
+/*--------------------------------------------
+Demo
+--------------------------------------------*/
+
+.ca_banner{
+	position: relative;
+	overflow: hidden;
+	background: #f0f0f0;
+	padding: 10px;
+	border: 1px solid #fff;
+	-moz-box-shadow:0px 0px 2px #aaa inset;
+}
+.ca_slide{
+	width: 100%;
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+.ca_zone{
+	position: absolute;
+	width: 100%;
+}
+.ca_wrap{
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+.ca_wrap img.ca_shown{
+	display: inline !important;
+}
+/* Custom styles of banner1 */
+.ca_banner1{
+	width: 650px;
+	height: 285px;
+}
+.ca_bg1{
+	background: #efefef;
+}
+.ca_banner1 .ca_zone1{
+	top: 0px;
+	left: 0px;
+}
+.ca_banner1 .ca_wrap1{
+	width: 320px;
+	height: 285px;
+}
+.ca_banner1 .ca_zone2{
+	top: 100px;
+	left: 320px;
+}
+.ca_banner1 .ca_wrap2{
+	width: 334px;
+	height: 193px;
+}
+.ca_banner1 .ca_zone3{
+	top: 10px;
+	left: 325px;
+}
+.ca_banner1 .ca_wrap3{
+	width: 333px;
+	height: 53px;
+}

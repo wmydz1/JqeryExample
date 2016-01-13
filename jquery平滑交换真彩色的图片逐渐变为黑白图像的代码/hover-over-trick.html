@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Greyscale Hover Over Trick by http://sc.xueit.com</title>
+<style type="text/css">
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font: normal 10px Verdana, Arial, Helvetica, sans-serif;
+	background: #fff;
+	position: relative;
+}
+h1 {
+	text-align: center;
+	font-weight: normal;
+	font-size: 2.5em;
+}
+h1 small {
+	display: block;
+	font-size: 0.7em;
+	color: #999;
+}
+img {border: none;}
+ul.gallery {
+	width: 708px;
+	list-style: none;
+	margin: 0 auto; padding: 0;
+}
+ul.gallery li {
+	float: left;
+	margin: 10px; padding: 0;
+	text-align: center;
+	border: 1px solid #ccc;
+	-moz-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	-khtml-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	-webkit-border-radius: 3px; /*--CSS3 Rounded Corners--*/
+	display: inline; /*--Gimp Fix aka IE6 Fix--*/
+}
+ul.gallery li a.thumb {
+	width: 204px;
+	height: 182px;
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+ul.gallery li span { /*--Used to crop image--*/
+	width: 204px;
+	height: 182px;
+	overflow: hidden;
+	display: block;
+}
+ul.gallery li a.thumb:hover {
+	background: #333;
+}
+ul.gallery li h2 {
+	font-size: 1em;
+	font-weight: normal;
+	text-transform: uppercase;
+	margin: 0; padding: 10px;
+	background: #f0f0f0;
+	border-top: 1px solid #fff; /*--Subtle bevel effect--*/
+}
+ul.gallery li a {text-decoration: none; color: #777; display: block;}
+</style>
+<script type="text/javascript" src="http://sc.xueit.com/plus/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+	
+	$("ul.gallery li").hover(function() { //On hover...
+		
+		var thumbOver = $(this).find("img").attr("src"); //Get image url and assign it to 'thumbOver'
+		
+		//Set a background image(thumbOver) on the &lt;a&gt; tag 
+		$(this).find("a.thumb").css({'background' : 'url(' + thumbOver + ') no-repeat center bottom'});
+		//Animate the image to 0 opacity (fade it out)
+		$(this).find("span").stop().animate({opacity: 0}, 300);
+	} , function() { //on hover out...
+		//Animate the image back to 100% opacity (fade it back in)
+		$(this).find("span").stop().animate({opacity: 1}, 300);
+	});
+
+});
+
+</script>
+</head>
+
+<body>
+<h1><a href="http://www.sohtanaka.com/web-design/greyscale-hover-effect-w-css-jquery/" style="color: #333; text-decoration: none;">Greyscale Hover Effect w/ CSS &amp; jQuery</a> <small>Tutorial by <a href="http://www.sohtanaka.com" style="color: #999;">Soh Tanaka</a></small></h1>
+<ul class="gallery">
+	<li>
+		<a href="http://www.designbombs.com/portfolio/sushi-robots/" class="thumb"><span><img src="sushiandrobots_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/portfolio/sushi-robots/">Sushi &amp; Robots</a></h2>
+	</li>
+	<li>
+		<a href="http://www.designbombs.com/blog/garys-real-life/" class="thumb"><span><img src="garysreallife_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/blog/garys-real-life/">Gary's Life</a></h2>
+	</li>
+	<li>
+		<a href="http://www.designbombs.com/ecommerce/cube-scripts/" class="thumb"><span><img src="cubescripts_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/ecommerce/cube-scripts/">Cube Scripts</a></h2>
+	</li>
+	<li>
+		<a href="http://www.designbombs.com/portfolio/ryan-keiser/" class="thumb"><span><img src="ryankeiser_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/portfolio/ryan-keiser/">Ryan Keiser</a></h2>
+	</li>
+	<li>
+		<a href="http://www.designbombs.com/blog/ricardo-gimenes/" class="thumb"><span><img src="ricardogimenes_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/blog/ricardo-gimenes/">Ricardo Gimenes</a></h2>
+	</li>
+	<li>
+		<a href="http://www.designbombs.com/blog/food-tease/" class="thumb"><span><img src="foodtease_thumb.gif" alt="" /></span></a>
+		<h2><a href="http://www.designbombs.com/blog/food-tease/">Food Tease</a></h2>
+	</li>
+</ul>
+
+<!--
+   ┏━━━━━━━━━━━━━━━━━━━━━┓
+   ┃             源 码 爱 好 者               ┃
+   ┣━━━━━━━━━━━━━━━━━━━━━┫
+   ┃                                          ┃
+   ┃           提供源码发布与下载             ┃
+   ┃                                          ┃
+   ┃        http://sc.xueit.com           ┃
+   ┃                                          ┃
+   ┃            互助、分享、提高              ┃
+   ┗━━━━━━━━━━━━━━━━━━━━━┛
+-->
+</body>
+</html>

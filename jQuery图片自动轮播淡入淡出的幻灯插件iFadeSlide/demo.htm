@@ -1,0 +1,99 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="Mr.Think青鸟" />
+<meta name="keywords" content="Mr.Think,前端开发,WEB前端,前端技术,前端开发,WEB前端开发,用户体验,网站策划,网站优化,青鸟,javascript,jQuery,css,xhtml,html,UE,SEO,Mr.Think的博客,青鸟的博客,PHP爱好者,Bluebirdsky,jquery插件,幻灯插件" />
+<meta name="description" content="Mr.Think的博客,中文网名青鸟,现专注于WEB前端开发,同时也是一位PHP的爱好者.爱思考,有点代码洁癖,生吃过螃蟹腿,喜好肉食.这里是我记录知识与生活琐事的地方." />
+<link rel="pingback" href="http://mrthink.net/xmlrpc.php" />
+<link rel="alternate" type="application/rss+xml" title="Mr.Think的博客 RSS Feed" href="http://mrthink.net/feed/" />
+<link rel="stylesheet" type="text/css" href="css/jquery.iFadeSlide.css" media="all" />
+<title>基于jQuery淡入淡出可自动切换的幻灯插件@Mr.Think</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+<!--<script src="js/jquery.iFadeSldie.js">//开发版文件</script>-->
+<script src="js/jquery.iFadeSldie.pack.js">//压缩版文件</script>
+
+<script>
+/*******************************
+ * @基于jQuery淡入淡出可自动切换的幻灯插件
+ * @jQuery Vesion:1.4.2
+ * @Plugin Page:http://mrthink.net/jq-plugin-ifadeslide/
+ * @Author Mr.Think
+ * @Author blog http://mrthink.net/
+ * @Creation date: 2010.08.20
+ *******************************/
+	
+//调用插件并传入插件参数
+//此处传入的参数将覆盖jquery.iFadeSlide.js的参数,为空即使用插件文件中默认参数	
+$(function(){
+	//SAMPLE-A调用---未传入任何参数,调用默认参数
+	$('div#slide').iFadeSlide();
+	//SAMPLE-B调用---传入新的参数,将覆盖原有参数,未传入的使用默认值
+	$('div#slide_b').iFadeSlide({
+		field: $('div#slide_b a'),
+		icocon:$('div.ico_b'),
+        hoverCls: 'high_b',
+        curIndex: 2,  //索引值0起始,故此处设置为第3项高亮
+        interval: 2000
+	});
+	//SAMPLE-C调用---传入新的参数,将覆盖原有参数,未传入的使用默认值
+	$('div#slide_c').iFadeSlide({
+		field: $('div#slide_c img'),
+		icocon: $('div.ico_c'),
+		outTime:100,
+		inTime: 200
+	});
+});
+</script>
+
+</head>
+<body>
+<h1><a href="http://mrthink.net/">Mr.Think的个人博客</a><br />@专注前端技术,热爱PHP,崇尚简单生活.</h1>
+<h3>返回文章页:<a href="http://mrthink.net/jq-plugin-ifadeslide/">基于jQuery淡入淡出可自动切换的幻灯插件@Mr.Think</a></h3>
+<h5><a href="http://mrthink.net/jq-plugin-ifadeslide/">插件主页@Mr.Think</a></h5>
+<!--DEMO start-->
+<div class="box">
+<!--SAMPLE-A-->
+<div id="slide">
+            <img src="http://img.ffffound.com/static-data/assets/6/619e98ef7507a105040d1a92ca70232a1eb207fd_m.jpg" title="demo" alt="demo" />
+            <img src="http://img.ffffound.com/static-data/assets/6/178ead7c5436be41b07126a1f2053be976c53576_m.jpg" title="demo" alt="demo" />
+            <img src="http://img.ffffound.com/static-data/assets/6/5958057370c288b30c48ac57261366f7e6613eaa_m.jpg" title="demo" alt="demo" />
+            <div class="ico"></div>
+</div>
+<!--SAMPLE-A end-->
+<!--SAMPLE-B-->
+<div id="slide_b">
+            <a href="http://mrthink.net/sitemap/"><img src="http://img.ffffound.com/static-data/assets/6/619e98ef7507a105040d1a92ca70232a1eb207fd_m.jpg" title="demo" alt="demo" /></a>
+            <a href="http://mrthink.net/sitemap/"><img src="http://img.ffffound.com/static-data/assets/6/178ead7c5436be41b07126a1f2053be976c53576_m.jpg" title="demo" alt="demo" /></a>
+            <a href="http://mrthink.net/sitemap/"><img src="http://img.ffffound.com/static-data/assets/6/5958057370c288b30c48ac57261366f7e6613eaa_m.jpg" title="demo" alt="demo" /></a>
+            <a href="http://mrthink.net/sitemap/"><img src="http://img.ffffound.com/static-data/assets/6/f8bc38048259f10f07bb3fb06a5c8867dd2a4419_m.jpg" title="demo" alt="demo" /></a>
+            <div class="ico_b"></div>
+</div>
+<!--SAMPLE-B end-->
+</div>
+<!--SAMPLE-C-->
+<div id="slide_c">
+            <img src="http://img.ffffound.com/static-data/assets/6/619e98ef7507a105040d1a92ca70232a1eb207fd_m.jpg" title="demo" alt="demo" />
+            <img src="http://img.ffffound.com/static-data/assets/6/178ead7c5436be41b07126a1f2053be976c53576_m.jpg" title="demo" alt="demo" />
+            <img src="http://img.ffffound.com/static-data/assets/6/5958057370c288b30c48ac57261366f7e6613eaa_m.jpg" title="demo" alt="demo" />
+			 <img src="http://img.ffffound.com/static-data/assets/6/f8bc38048259f10f07bb3fb06a5c8867dd2a4419_m.jpg" title="demo" alt="demo" />
+            <img src="http://img.ffffound.com/static-data/assets/6/cd8cdf92b2519c344d1e9849fbaf238f7c6b5d13_m.jpg" title="demo" alt="demo" />
+            <div class="ico_c"></div>
+</div>
+<!--SAMPLE-C end-->
+
+<!--DEMO end-->
+<!--@Mr.Think统计代码,使用本DEMO请勿复制:)-->
+<script>
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script>
+try {
+var pageTracker = _gat._getTracker("UA-15924173-1");
+pageTracker._trackPageview();
+} catch(err) {}
+</script>
+<!--@end-->
+</body>
+</html>

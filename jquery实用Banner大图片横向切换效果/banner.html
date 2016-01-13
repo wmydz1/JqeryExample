@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.cycle.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('#banner').cycle({ 
+				fx:'scrollLeft',
+				pager:'#btn'
+		});
+	})
+</script>
+<title>无标题文档</title>
+</head>
+<style type="text/css">
+	#banner
+	{
+		width:980px;
+		margin:0px auto;
+		height:210px;
+		overflow:hidden;
+		z-index:-1;
+	}
+	#btn
+	{	display: inline;
+		width:110px;
+		hegiht:18px;
+		float:left;
+		margin:-30px 0px 0px 865px;
+		position:absolute;
+		z-index:1;
+	}
+	#btn a
+	{
+		color:#36f;
+		font:700 11px "Arial";
+		background:url(images/ibbtn.gif) no-repeat;
+		float:left;
+		width:18px;
+		height:18px;
+		line-height:18px;
+		text-align:center;
+		text-decoration:none;
+		margin-left:5px;
+	}
+	#btn a.activeSlide
+	{	
+		color:#fff;
+		background:url(images/ibhbtn.gif) no-repeat;
+	}
+	#btn a:hover
+	{	
+		color:#fff;
+		background:url(images/ibhbtn.gif) no-repeat;
+	}
+</style>
+<body>
+<div id="banner">
+    	<img  src="images/ibanner1.jpg" width="980" height="210">
+        <img  src="images/ibanner2.jpg" width="980" height="210">
+        <img  src="images/ibanner3.jpg" width="980" height="210">
+        <img  src="images/ibanner4.jpg" width="980" height="210">
+</div>
+<div id="btn"></div>
+</body>
+</html>

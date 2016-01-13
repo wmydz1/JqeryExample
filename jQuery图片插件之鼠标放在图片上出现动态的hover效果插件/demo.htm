@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="gb2312">
+	<title>jCutter</title>
+	<style type="text/css">
+		.wrap{
+			width:940px;
+			margin:0 auto;
+		}
+		.info{
+			margin:30px;
+		}
+		.jcutter{
+			width:300px;
+			height:200px;
+			overflow:hidden;
+			position:relative;
+			background:#ccc;
+			cursor:pointer;
+		}
+		.jcutter-content{
+			position:absolute;
+			left:0;
+			top:0;
+			width:100%;
+			height:100%;
+		}
+		.jcutter img{
+			position:absolute;
+			width:100%;
+			height:100%;
+			z-index:1;
+		}
+	</style>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript" src="jCutter.js"></script>
+	<script type="text/javascript" src="jquery-easing.1.2.pack.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			options={
+				'speedIn':600,
+				'speedOut':400,
+				'easeIn':'easeOutBounce',
+				'easeOut':''
+			}
+			$('.jcutter').jCutter(options);
+		})
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="info">
+			这是一个jquery的插件，可以做出比较有趣的hover效果。
+		</div>
+		<div class="jcutter">
+			<img src="1.jpg" alt="">
+			<div class="jcutter-content">
+				这里是点开后的页面的内容
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

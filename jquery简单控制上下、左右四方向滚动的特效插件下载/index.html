@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>中规中矩jQuery四方向可控滚动-http://sc.xueit.com</title>
+<style type="text/css">
+html, body, div, h1, h2, h3, h4, h5, h6, ul, ol, dl, li, dt, dd, p, blockquote,
+pre, form, fieldset, table, th, td,form{
+margin:0;
+padding:0;
+}
+body{
+font:"","Times New Roman",Times,serif,Arial,Helvetica,sans-serif;
+font-size:12px;
+}
+img{
+border:0px;
+}
+a{
+text-decoration:none;
+color:#000;
+}
+a:hover{
+text-decoration:none;
+}
+ul,dl,ol{
+list-style:none;
+}
+.boxTBContainer{
+margin:10px;
+clear:both;
+height:455px;
+width:366px;
+overflow:hidden;
+position:relative;
+z-index:100;
+}
+	.directionAtag{
+	display:block;
+	width:33px;
+	height:32px;
+	overflow:hidden;
+	background-image:url(images/directionIco.gif);
+	margin:0px auto;
+	position:relative;
+	z-index:80;
+	}
+	.topAtag,.bottomAtag{
+	background-position:0px 0px;
+	clear:both;
+	}
+	.bottomAtag{
+	background-position:0px -32px;
+	}
+	.leftAtag,.rightAtag{
+	background-position:0px -64px;
+	height:30px;
+	float:left;
+	margin-top:80px;
+	}
+	.rightAtag{
+	background-position:0px -96px;
+	height:29px;
+	}
+	.upAndDownUlContainer{
+	width:100%;
+	height:380px;
+	overflow:hidden;
+	margin:5px auto 0px auto;
+	position:relative;
+	z-index:50;
+	}
+		.upAndDownUlContainer li{
+		margin:0px auto;
+		padding-bottom:5px;
+		overflow:hidden;
+		}
+		
+.boxLRContainer{
+float:left;
+width:810px;
+overflow:hidden;
+position:relative;
+overflow:hidden;
+z-index:100;
+margin:10px auto;
+}
+	.leftAndRightUlContainer{
+	overflow:hidden;
+	position:relative;
+	z-index:50;
+	width:732px;
+	float:left;
+	margin:0px 5px;
+	}
+		.leftAndRightUlContainer li{
+		padding-right:5px;
+		float:left;
+		}
+</style>
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript" src="jquery.jqia.scroll.js"></script>
+<script type="text/javascript">
+$(function(){
+	var upAndDownUlContainer = $('.upAndDownUlContainer');
+	var leftAndRightUlContainer = $('.leftAndRightUlContainer');
+	(function(){
+		var ul       = $("ul", leftAndRightUlContainer);  
+        var li       = $("li", ul);  
+        var liSize   = li.size();
+        var liWidth  = li.width() + 5;
+        var width    = liWidth * liSize;
+		ul.css('width',width);
+	})();
+	$('.directionAtag').click(function(){
+		$("div[class]", $(this).parent()).scrollPlug({direction:this.rel,step:10});
+		return false;
+	});		   
+})
+</script>
+</head>
+<body>
+<h2>上下点击效果</h2>
+<div class="boxTBContainer">
+	<a href="#" class="directionAtag topAtag" rel="up"></a>
+    <div class="upAndDownUlContainer">
+        <ul>
+            <li><img src="images/1.jpg" /></li>
+            <li><img src="images/2.jpg" /></li>
+            <li><img src="images/3.jpg" /></li>
+            <li><img src="images/4.jpg" /></li>
+            <li><img src="images/1.jpg" /></li>
+            <li><img src="images/2.jpg" /></li>
+            <li><img src="images/3.jpg" /></li>
+            <li><img src="images/4.jpg" /></li>
+        </ul>
+    </div>
+    <a href="#" class="directionAtag bottomAtag" rel="down"></a>
+</div>
+<h2>左右点击效果</h2>
+<div class="boxLRContainer">
+	<a href="#" class="directionAtag leftAtag" rel="left"></a>
+	<div class="leftAndRightUlContainer">
+        <ul class="lrUL">
+            <li><img src="images/1.jpg" /></li>
+            <li><img src="images/2.jpg" /></li>
+            <li><img src="images/3.jpg" /></li>
+            <li><img src="images/4.jpg" /></li>
+            <li><img src="images/1.jpg" /></li>
+            <li><img src="images/2.jpg" /></li>
+            <li><img src="images/3.jpg" /></li>
+            <li><img src="images/4.jpg" /></li>
+        </ul>
+    </div>
+    <a href="#" class="directionAtag rightAtag" rel="right"></a>
+</div>
+</body>
+</html>

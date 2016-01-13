@@ -1,0 +1,11 @@
+#myGallery {
+	width: 100%;
+	height: 300px;
+}
+#myGallery img {
+	border: 2px solid #52697E;
+}
+/* Download by http://sc.xueit.com */
+a.loading {
+	background: #fff url(../images/ajax_small.gif) no-repeat center;
+}

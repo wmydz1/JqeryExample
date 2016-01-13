@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="Content-Language" content="zh-CN" />
+<meta content="all" name="robots" />
+<meta name="author" content="中国万网,hichina,chinaok" /> 
+<meta name="Copyright" content="" />
+<meta name="description" content="" /> 
+<meta name="keywords" content="" />
+<title>动画相册</title>
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+<script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="galleryBox">
+
+<ul id="ul_gallery">
+<li><img src="images/1.jpg" alt="" /></li>
+<li><img src="images/2.jpg" alt="" /></li>
+<li><img src="images/3.jpg" alt="" /></li>
+<li><img src="images/4.jpg" alt="" /></li>
+<li><img src="images/5.jpg" alt="" /></li>
+
+<li><img src="images/6.jpg" alt="" /></li>
+<li><img src="images/7.jpg" alt="" /></li>
+<li><img src="images/8.jpg" alt="" /></li>
+<li><img src="images/9.jpg" alt="" /></li>
+<li><img src="images/10.jpg" alt="" /></li>
+</ul>
+
+<span id="span_next">&laquo;</span><span id="span_prev">&raquo;</span>
+
+<script type="text/javascript">
+var ul=$("#ul_gallery");
+var li=$("#ul_gallery li");
+var img=$("#ul_gallery img");
+li.eq(0).css({left:"0px",display:"block"});
+li.eq(1).css({top:"0",left:"150px",width:"500px",height:"333px",display:"block"});
+img.eq(1).css({width:"500px",height:"333px"});
+li.eq(2).css({display:"block"});
+var x=img.length-1;
+var y=1;
+
+
+$("#span_next").click(function() {
+	if(y<x){
+	if(y==(x-1)){$("#span_next").fadeOut();}
+	$("#span_prev").show();
+		y++;
+		li.eq(y).animate({top:"0",left:"150px",width:"500px",height:"333px"});
+		img.eq(y).animate({width:"500px",height:"333px"});
+		li.eq(y+1).fadeIn("slow");
+		li.eq(y-1).animate({top:"120px",left:"0",width:"100px",height:"67px"});
+		img.eq(y-1).animate({width:"100px",height:"67px"});
+	}
+});
+
+
+
+$("#span_prev").click(function() {
+
+	if(y>0){
+	if(y==1){$("#span_prev").fadeOut();}
+	$("#span_next").show();
+		y--;
+		li.eq(y).animate({top:"0",left:"150",width:"500px",height:"333px"});
+		img.eq(y).animate({width:"500px",height:"333px"});
+		li.eq(y+2).fadeOut("slow");
+		li.eq(y+1).animate({top:"120",left:"700",width:"100px",height:"67px"});
+		img.eq(y+1).animate({width:"100px",height:"67px"});
+	}
+});
+
+
+
+</script>
+
+
+
+</div>
+
+
+
+
+</div>
+</body>
+</html>

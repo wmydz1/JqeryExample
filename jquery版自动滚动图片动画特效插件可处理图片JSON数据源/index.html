@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>jQuery simplyScroll - Logicbox</title>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js">
+</script>
+<script type="text/javascript" src="jquery.simplyscroll-1.0.4.min.js"></script>
+<link rel="stylesheet" href="jquery.simplyscroll-1.0.4.css" media="all" type="text/css">
+<script type="text/javascript">
+(function($) {
+	$(function() {
+		$("#scroller").simplyScroll({
+			className: 'vert',
+			horizontal: false,
+			frameRate: 20,
+			speed: 5			
+		});
+	});
+})(jQuery);
+</script>
+</head>
+
+<body id="p_jquery" class="sub">
+
+<div id="wrapper">
+<div id="main">
+	<ul id="scroller">
+        		<li><img src="20080513_4D3SD1BQ_tb.jpg" width="290" height="200" alt="Chloe nightclub"></li>
+        		<li><img src="20080513_VPJWVQRW_tb.jpg" width="290" height="200" alt="Firehouse bar"></li>
+        		<li><img src="20080514_B1YJ08B6_tb.jpg" width="290" height="200" alt="Firehouse chloe club fishtank"></a></li>
+        		<li><img src="20080514_JYW68XPT_tb.jpg" width="290" height="200" alt="Firehouse restaurant"></li>
+            </ul>
+      
+</div>
+</div>
+</body>
+</html>

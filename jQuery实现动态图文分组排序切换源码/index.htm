@@ -1,0 +1,303 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0055)http://razorjack.net/quicksand/demos/one-set-clone.html -->
+<HTML><HEAD><TITLE>Quicksand : Examples : Sorting one set of HTML (cloning)</TITLE>
+<META charset=utf-8><LINK href="Quicksan_files/main.css" rel=stylesheet><!--[if IE 7]><link rel="stylesheet" href="../styles/ie7.css" /><![endif]--><!-- DO NOT USE THIS FILE. it is compiled for fast http access --><!-- if you’re looking for source, download or read documentation -->
+<SCRIPT src="Quicksan_files/jquery-1.4.1-and-plugins.min.js" 
+type=text/javascript></SCRIPT>
+
+<META content="MSHTML 6.00.3790.4696" name=GENERATOR></HEAD>
+<BODY>
+<DIV id=wrapper>
+<DIV id=site>
+<DIV id=title>
+<H1>Quicksand<SPAN></SPAN></H1>
+<P>Reorder and filter items with a nice shuffling animation.</P><A 
+href="http://www.codefans.net">Examples</A> 
+</DIV>
+<H2 class=splitter>Advanced: Sorting one set of HTML (cloning)</H2>
+<DIV class=demo>
+<FORM id=filter>
+<FIELDSET><LEGEND>Filter by type</LEGEND><LABEL><INPUT type=radio CHECKED 
+value=all name=type>Everything</LABEL> <LABEL><INPUT type=radio value=app 
+name=type>Applications</LABEL> <LABEL><INPUT type=radio value=util 
+name=type>Utilities</LABEL> </FIELDSET> 
+<FIELDSET><LEGEND>Sort by</LEGEND><LABEL><INPUT type=radio CHECKED value=size 
+name=sort>Size</LABEL> <LABEL><INPUT type=radio value=name 
+name=sort>Name</LABEL> </FIELDSET> </FORM>
+<UL class=image-grid id=applications>
+  <LI data-type="util" data-id="id-1"><IMG height=128 alt="" 
+  src="Quicksan_files/activity-monitor.png" width=128> <STRONG>Activity 
+  Monitor</STRONG> <SPAN data-type="size">348 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-2"><IMG height=128 alt="" 
+  src="Quicksan_files/address-book.png" width=128> <STRONG>Address Book</STRONG> 
+  <SPAN data-type="size">1904 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-3"><IMG height=128 alt="" 
+  src="Quicksan_files/finder.png" width=128> <STRONG>Finder</STRONG> <SPAN 
+  data-type="size">1337 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-4"><IMG height=128 alt="" 
+  src="Quicksan_files/front-row.png" width=128> <STRONG>Front Row</STRONG> <SPAN 
+  data-type="size">401 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-5"><IMG height=128 alt="" 
+  src="Quicksan_files/google-pokemon.png" width=128> <STRONG>Google 
+  Pokémon</STRONG> <SPAN data-type="size">12875 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-6"><IMG height=128 alt="" 
+  src="Quicksan_files/ical.png" width=128> <STRONG>iCal</STRONG> <SPAN 
+  data-type="size">5273 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-7"><IMG height=128 alt="" 
+  src="Quicksan_files/ichat.png" width=128> <STRONG>iChat</STRONG> <SPAN 
+  data-type="size">5437 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-8"><IMG height=128 alt="" 
+  src="Quicksan_files/interface-builder.png" width=128> <STRONG>Interface 
+  Builder</STRONG> <SPAN data-type="size">2764 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-9"><IMG height=128 alt="" 
+  src="Quicksan_files/ituna.png" width=128> <STRONG>iTuna</STRONG> <SPAN 
+  data-type="size">17612 KB</SPAN> </LI>
+  <LI data-type="util" data-id="id-10"><IMG height=128 alt="" 
+  src="Quicksan_files/keychain-access.png" width=128> <STRONG>Keychain 
+  Access</STRONG> <SPAN data-type="size">972 KB</SPAN> </LI>
+  <LI data-type="util" data-id="id-11"><IMG height=128 alt="" 
+  src="Quicksan_files/network-utility.png" width=128> <STRONG>Network 
+  Utility</STRONG> <SPAN data-type="size">245 KB</SPAN> </LI>
+  <LI data-type="util" data-id="id-12"><IMG height=128 alt="" 
+  src="Quicksan_files/sync.png" width=128> <STRONG>Sync</STRONG> <SPAN 
+  data-type="size">3788 KB</SPAN> </LI>
+  <LI data-type="app" data-id="id-13"><IMG height=128 alt="" 
+  src="Quicksan_files/textedit.png" width=128> <STRONG>TextEdit</STRONG> <SPAN 
+  data-type="size">1669 KB</SPAN> </LI></UL></DIV>
+<SCRIPT type=text/javascript>
+          // Custom sorting plugin
+          (function($) {
+          	$.fn.sorted = function(customOptions) {
+          		var options = {
+          			reversed: false,
+          			by: function(a) { return a.text(); }
+          		};
+          		$.extend(options, customOptions);
+          		$data = $(this);
+          		arr = $data.get();
+          		arr.sort(function(a, b) {
+          		   	var valA = options.by($(a));
+          		   	var valB = options.by($(b));
+          			if (options.reversed) {
+          				return (valA < valB) ? 1 : (valA > valB) ? -1 : 0;				
+          			} else {		
+          				return (valA < valB) ? -1 : (valA > valB) ? 1 : 0;	
+          			}
+          		});
+          		return $(arr);
+          	};
+          })(jQuery);
+      
+          // DOMContentLoaded
+          $(function() {
+          
+            // bind radiobuttons in the form
+          	var $filterType = $('#filter input[name="type"]');
+          	var $filterSort = $('#filter input[name="sort"]');
+        	
+          	// get the first collection
+          	var $applications = $('#applications');
+        	
+          	// clone applications to get a second collection
+          	var $data = $applications.clone();
+
+            // attempt to call Quicksand on every form change
+          	$filterType.add($filterSort).change(function(e) {
+          		if ($($filterType+':checked').val() == 'all') {
+          			var $filteredData = $data.find('li');
+          		} else {
+          			var $filteredData = $data.find('li[data-type=' + $($filterType+":checked").val() + ']');
+          		}
+            
+              // if sorted by size
+          		if ($('#filter input[name="sort"]:checked').val() == "size") {
+          			var $sortedData = $filteredData.sorted({
+          				by: function(v) {
+          					return parseFloat($(v).find('span[data-type=size]').text());
+          				}
+          			});
+          		} else {
+          		// if sorted by name
+          			var $sortedData = $filteredData.sorted({
+          				by: function(v) {
+          					return $(v).find('strong').text().toLowerCase();
+          				}
+          			});
+          		}   
+        		
+          		// finally, call quicksand
+          	  $applications.quicksand($sortedData, {
+          	    duration: 800,
+          	    easing: 'easeInOutQuad'
+          	  });
+
+          	});
+          
+          });
+        </SCRIPT>
+
+<H2 class=splitter>JavaScript</H2><PRE><CODE>// Custom sorting plugin
+(function($) {
+  $.fn.sorted = function(customOptions) {
+    var options = {
+      reversed: false,
+      by: function(a) { return a.text(); }
+    };
+    $.extend(options, customOptions);
+    $data = $(this);
+    arr = $data.get();
+    arr.sort(function(a, b) {
+      var valA = options.by($(a));
+      var valB = options.by($(b));
+      if (options.reversed) {
+        return (valA &lt; valB) ? 1 : (valA &gt; valB) ? -1 : 0;				
+      } else {		
+        return (valA &lt; valB) ? -1 : (valA &gt; valB) ? 1 : 0;	
+      }
+    });
+    return $(arr);
+  };
+})(jQuery);
+
+// DOMContentLoaded
+$(function() {
+
+  // bind radiobuttons in the form
+  var $filterType = $('#filter input[name="type"]');
+  var $filterSort = $('#filter input[name="sort"]');
+
+  // get the first collection
+  var $applications = $('#applications');
+
+  // clone applications to get a second collection
+  var $data = $applications.clone();
+
+  // attempt to call Quicksand on every form change
+  $filterType.add($filterSort).change(function(e) {
+    if ($($filterType+':checked').val() == 'all') {
+      var $filteredData = $data.find('li');
+    } else {
+      var $filteredData = $data.find('li[data-type=' + $($filterType+":checked").val() + ']');
+    }
+
+    // if sorted by size
+    if ($('#filter input[name="sort"]:checked').val() == "size") {
+      var $sortedData = $filteredData.sorted({
+        by: function(v) {
+          return parseFloat($(v).find('span[data-type=size]').text());
+        }
+      });
+    } else {
+      // if sorted by name
+      var $sortedData = $filteredData.sorted({
+        by: function(v) {
+          return $(v).find('strong').text().toLowerCase();
+        }
+      });
+    }   
+
+    // finally, call quicksand
+    $applications.quicksand($sortedData, {
+      duration: 800,
+      easing: 'easeInOutQuad'
+    });
+
+  });
+
+});</CODE></PRE>
+<H2 class=splitter>HTML</H2><PRE><CODE>&lt;form id="filter"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Filter by type&lt;/legend&gt;
+    &lt;label&gt;&lt;input type="radio" name="type" value="all" checked="checked"&gt;Everything&lt;/label&gt;
+    &lt;label&gt;&lt;input type="radio" name="type" value="app"&gt;Applications&lt;/label&gt;
+    &lt;label&gt;&lt;input type="radio" name="type" value="util"&gt;Utilities&lt;/label&gt;
+  &lt;/fieldset&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Sort by&lt;/legend&gt;
+    &lt;label&gt;&lt;input type="radio" name="sort" value="size" checked="checked"&gt;Size&lt;/label&gt;
+    &lt;label&gt;&lt;input type="radio" name="sort" value="name"&gt;Name&lt;/label&gt;      
+  &lt;/fieldset&gt;
+&lt;/form&gt;
+
+&lt;ul id="applications" class="image-grid"&gt;
+  &lt;li data-id="id-1" data-type="util"&gt;
+    &lt;img src="activity-monitor.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Activity Monitor&lt;/strong&gt;
+    &lt;span data-type="size"&gt;348 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-2" data-type="app"&gt;
+    &lt;img src="address-book.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Address Book&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;1904 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-3" data-type="app"&gt;
+    &lt;img src="finder.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Finder&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;1337 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-4" data-type="app"&gt;
+    &lt;img src="front-row.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Front Row&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;401 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-5" data-type="app"&gt;
+    &lt;img src="google-pokemon.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Google Pokémon&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;12875 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-6" data-type="app"&gt;
+    &lt;img src="ical.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;iCal&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;5273 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-7" data-type="app"&gt;
+    &lt;img src="ichat.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;iChat&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;5437 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-8" data-type="app"&gt;
+    &lt;img src="interface-builder.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Interface Builder&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;2764 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-9" data-type="app"&gt;
+    &lt;img src="ituna.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;iTuna&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;17612 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-10" data-type="util"&gt;
+    &lt;img src="keychain-access.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Keychain Access&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;972 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-11" data-type="util"&gt;
+    &lt;img src="network-utility.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Network Utility&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;245 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-12" data-type="util"&gt;
+    &lt;img src="sync.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;Sync&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;3788 KB&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;li data-id="id-13" data-type="app"&gt;
+    &lt;img src="textedit.png" width="128" height="128" alt="" /&gt;
+    &lt;strong&gt;TextEdit&lt;/strong&gt; 
+    &lt;span data-type="size"&gt;1669 KB&lt;/span&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</CODE></PRE></DIV></DIV>
+<P class=footer><SPAN>Powered by <A href="http://jquery.com/">jQuery</A> – Made 
+by <A href="http://agilope.com/">agilope</A></SPAN> <SPAN>Design by <A 
+href="http://twitter.com/riddle">@riddle</A></SPAN> </P>
+<SCRIPT type=text/javascript>
+      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </SCRIPT>
+
+<SCRIPT type=text/javascript>
+      try {
+        var pageTracker = _gat._getTracker("UA-1121012-6");
+        pageTracker._trackPageview();
+      } catch(err) {}
+    </SCRIPT>
+</BODY></HTML>

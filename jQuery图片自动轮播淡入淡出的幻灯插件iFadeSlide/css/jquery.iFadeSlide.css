@@ -1,0 +1,37 @@
+/*******************************
+ * @鍩轰簬jQuery 1.4鐨勬笎鍏ユ笎鍑哄垏鎹㈠够鐏彃浠�
+ * @Plugin Page:http://mrthink.net/jq-plugin-ifadeslide/
+ * @Author Mr.Think
+ * @Author blog http://mrthink.net/
+ * @Download http://sc.xueit.com
+ * @Creation date: 2010.08.20
+ *******************************/
+@charset "utf-8";
+/*reset css*/
+body{font-size:0.8em;letter-spacing:1px;font-family:"MS Sans Serif", Geneva, sans-serif; line-height:1.8em}
+div,h2,p,ul,li{margin:0;padding:0}
+h1{font-size:1em; font-weight:normal;}
+h1 a{background:#047; padding:2px 3px; color:#fff; text-decoration:none;}
+h1 a:hover{background:#a40000; color:#fff; text-decoration:underline}
+h3{color:#888; font-weight:bold;font-size:1em; margin:1em auto; position:relative}
+h5 a{background:#000; color:#fff; text-decoration:none; font-size:12px;font-weight:normal;letter-spacing:3px;position:absolute;right:7px;top:7px; padding:1px 12px;}
+.box{width:700px;height:250px}
+/*demo css*/
+/*SAMPLE-A*/
+#slide { position:relative;width:200px; height:250px; overflow:hidden; border:1px solid #ccc; float:left}
+#slide img{width:200px; height:250px}
+#slide .ico{position:absolute; right:8px;bottom:6px}
+#slide .ico li{background:#fff;float:left;display:block; width:15px; height:15px; line-height:15px;border:1px solid #cecece;font-family:Arial, Helvetica, sans-serif;text-align:center;margin:2px; padding: 1px;cursor:pointer}
+#slide .ico li.high{background:#047;color:#fff;font-weight:bolder}
+/*SAMPLE-B*/
+#slide_b { position:relative;width:460px; height:250px; overflow:hidden; border:1px solid #ccc; float:right }
+#slide_b img{width:500px; height:250px}
+#slide_b .ico_b{position:absolute; right:8px;bottom:6px}
+#slide_b .ico_b li{background:#fff;float:left;display:block; width:15px; height:15px; line-height:15px;border:1px solid #cecece;font-family:Arial, Helvetica, sans-serif;text-align:center;margin:2px; padding: 1px;cursor:pointer}
+#slide_b .ico_b li.high_b{background:#a40000;color:#fff;font-weight:bolder}
+/*SAMPLE-C*/
+#slide_c { position:relative;width:700px; height:250px; overflow:hidden; border:1px solid #ccc; margin-top:20px; }
+#slide_c img{width:700px; height:250px}
+#slide_c .ico_c{position:absolute; right:8px;bottom:6px}
+#slide_c .ico_c li{background:#fff;float:left;display:block; width:15px; height:15px; line-height:15px;border:1px solid #cecece;font-family:Arial, Helvetica, sans-serif;text-align:center;margin:2px; padding: 1px;cursor:pointer}
+#slide_c .ico_c li.high{background:#000;color:#fff;font-weight:bolder}

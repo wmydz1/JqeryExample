@@ -1,0 +1,123 @@
+*{
+margin:0;
+padding:0;
+}
+body{
+background:#666;
+margin:0px auto;
+padding:0px;
+font-size:0.75em;
+text-align:center;
+font-family:Tahoma,Verdana, Arial,Helvetica, sans-serif;
+color:#343434;
+}
+.clear{
+clear:both;
+}
+a{
+text-decoration:none;
+color:#343434;
+}
+form{
+margin:0px;
+}
+input,select,textarea,td{
+font-size:12px;
+font-family:Tahoma,Verdana,Arial;}
+h1,h2,h3,h4,h5,h6{
+font-size:1em;}
+ol,ul{
+margin:0px;
+padding:0px;
+list-style:none;
+}
+.clear{
+height:0;
+font-size:0em;
+line-height:0em; 
+clear:both;
+}
+
+p{
+margin:0px;
+}
+fieldset,img{
+border:0;}
+
+/*--from now--*/
+/*Download by http://www.codefans.net*/
+
+#wrapper{
+width:800px;
+margin:0 auto;
+text-align:left;
+background:#fff;
+padding-top:1px;
+height:480px;}
+
+#galleryBox{
+position:relative;
+margin-top:15px;
+height:460px; }
+
+
+
+#ul_gallery{}
+#ul_gallery li{
+position:absolute;
+width:100px;
+height:67px;overflow:hidden;
+top:150px;left:670px;
+filter:alpha(opacity=0);
+opacity:0.0;
+z-index:1;}
+#ul_gallery li img{
+width:120px;}
+
+
+#p_bot{
+position:absolute; 
+top:420px;
+width:800px; 
+text-align:center;
+height:41px; 
+}
+
+#this_prev,#this_next{
+position:absolute;
+display:block;
+width:120px;height:80px; 
+top:150px;left:10px;
+text-indent:-999em;overflow:hidden;
+cursor:hand;
+cursor:pointer;
+background:#fff;
+filter:alpha(opacity=0);
+opacity:0.0;
+z-index:5;}
+#this_next{left:670px;}
+
+#span_prev,#span_auto,#span_next{
+display:inline-block;
+*display:inline;
+*zoom:1;
+width:20px;height:20px;
+line-height:0;font-size:0;
+vertical-align:middle;
+background:url(../images/bot.gif) no-repeat 0 0; 
+cursor:hand;
+cursor:pointer;
+margin:0 5px;}
+#span_auto{background-position:-20px 0;}
+#span_auto.play{background-position:-60px 0;}
+#span_next{background-position:-40px 0;}
+
+
+
+
+
+
+
+
+
+

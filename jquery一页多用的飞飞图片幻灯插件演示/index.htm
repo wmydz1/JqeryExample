@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>飞飞图片幻灯片，图片自动适应宽高</title>
+<!--
+ * jQuery插件：autoimg
+ * 	版本：v1.1
+ *  时间：2010-8-31
+ *  作者：飞飞
+ *  QQ：276230416
+ *  网址：http://www.ffasp.com
+ *  发布网址：http://www.ffasp.com/content.asp?newsid=1644
+ +--------------------------------------------------------------------
+ *使用说明：
+ *1.本插件支持一个页面多次使用
+ *2.html模板如下
+	<div class="autoimg">
+	  <div class="parentdiv"><img src="" /> </div>
+	  <ul class="imglist">
+		<li><img src="1/0.jpg" /></li>
+		<li><img src="1/1.jpg" /></li>
+		<li><img src="1/2.jpg" /></li>
+	  </ul>
+	  <div class="clearboth"></div>
+	</div>
+ *3.参考样式[见示例：index.html]	
+ +--------------------------------------------------------------------
+-->
+<script src="jquery-1.4.2.min.js"></script>
+<script src="jquery.autoimg.js"></script>
+<style type="text/css">
+/*图片展示框架*/
+.parentdiv {
+	position:relative;
+	overflow:hidden;
+	height:300px;
+	width:300px;
+	border:1px solid #000;
+	float:left;
+}
+/*图片缩略图列表*/
+.imglist {
+	width:270px;
+	float:left
+}
+.imglist li {
+	width:80px;
+	height:80px;
+	overflow:hidden;
+	float:left;
+	margin:5px;
+}
+.imglist li img {
+	width:80px
+}
+/*清除浮动*/
+.clearboth {
+	clear:both
+}
+</style>
+</head>
+<body>
+<strong>Jquery插件</strong>：atuoimg<br />
+<strong>作者</strong>：飞飞<br />
+<strong>版本</strong>：v1.1<br />
+<strong>QQ群</strong>：72840059<br />
+<strong>在线演示及下载地址</strong>：<a href="http://www.ffasp.com/content.asp?newsid=1644" target="_blank">http://www.ffasp.com/content.asp?newsid=1644</a><br />
+<strong>更多资源</strong>：<a href="http://www.ffasp.com/content.asp?newsid=1644" target="_blank">http://www.ffasp.com</a><br />
+<strong>功能说明：</strong><br /> 
+1.可以实现一个页面多次调用<br />
+2.所播放的图片宽高可以自适应外部框架<br />
+3.可以自定义播放时间间隔<br />
+<div class="autoimg">
+  <div class="parentdiv"><img src="" /> </div>
+  <ul class="imglist">
+    <li><img src="1/0.jpg" /></li>
+    <li><img src="1/1.jpg" /></li>
+    <li><img src="1/2.jpg" /></li>
+  </ul>
+  <div class="clearboth"></div>
+</div>
+<div class="autoimg">
+  <div class="parentdiv"> <img src=""/> </div>
+  <ul class="imglist">
+    <li><img src="2/1.jpg" /></li>
+    <li><img src="2/0.jpg" /></li>
+  </ul>
+  <div class="clearboth"></div>
+</div>
+<div class="autoimg">
+  <div class="parentdiv"><img src=""/> </div>
+  <ul class="imglist">
+    <li><img src="3/1.jpg" /></li>
+    <li><img src="3/0.jpg" /></li>
+  </ul>
+  <div class="clearboth"></div>
+</div>
+<script type="text/javascript">
+$(".autoimg").autoimg();
+</script>
+</body>
+</html>

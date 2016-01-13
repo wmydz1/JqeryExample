@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+    <meta name="description" content="Sunflowa Media is a Green,Reliable,Funny Web Design." />
+    <meta name="keywords" content="CSS,XHTML,Web Design,Website Design,Sunflowa Media,Sunflowa Web Design,Funny Web Design,Web Designer,Game,Online Game,Freelace Website Designer,Beautiful Websites,Networking" />
+    
+        <title>Custom Animation Banner with jQuery</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" href="css/index.css" type="text/css" media="screen"/>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+        <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+        <script type="text/javascript" src="js/jquery.transform-0.8.0.min.js"></script>
+        <script type="text/javascript" src="js/jquery.banner.js"></script>
+        
+    </head>
+
+    <body>
+		<div class="content">
+			<h2 class="title_name">Activities Drop-down menu with <span>CSS &amp; jQuery</span><small>by Sunflowa Media</small></h2>
+            <div class="examples_body">
+			<div id="ca_banner1" class="ca_banner ca_banner1">
+				<div class="ca_slide ca_bg1">
+					<div class="ca_zone ca_zone1"><!--Product-->
+						<div class="ca_wrap ca_wrap1">
+							<img src="images/luffy.jpg" width="321" height="285" class="ca_shown" alt="モンキー・D・ルフィ"/>
+							<img src="images/zoro.jpg" width="321" height="285" alt="ゾロ" style="display:none;" />
+							<img src="images/ace.jpg" width="321" height="285" alt="ポートガス・D・エース" style="display:none;" />
+							<img src="images/oyaji.jpg" width="321" height="285" alt="白ひげ" style="display:none;" />
+							<img src="images/prd1ex.jpg" width="321" height="285" alt="電伝虫メジャー" style="display:none;" />
+						</div>
+					</div>
+					<div class="ca_zone ca_zone2"><!--Line-->
+						<div class="ca_wrap ca_wrap2">
+							<img src="images/line1.gif" class="ca_shown" alt="" />
+							<img src="images/line2.gif" alt="" style="display:none;" />
+                            <img src="images/line2.gif" alt="" style="display:none;" />
+                            <img src="images/line4.gif" alt="" style="display:none;" />
+                            <img src="images/line5.gif" alt="" style="display:none;" />
+						</div>
+					</div>
+					<div class="ca_zone ca_zone3"><!--Title-->
+						<div class="ca_wrap ca_wrap3">
+							<img src="images/title1.gif" class="ca_shown" alt="" />
+							<img src="images/title2.gif" alt="" style="display:none;" />
+							<img src="images/title3.gif" alt="" style="display:none;" />
+                            <img src="images/title4.gif" alt="" style="display:none;" />
+							<img src="images/title5.gif" alt="" style="display:none;" />
+						</div>
+					</div>
+				</div>
+			</div>
+            </div>
+
+		</div>
+
+        <!-- The JavaScript -->
+        
+        <script type="text/javascript">
+            $(function() {
+				//we want 5 steps / slides for the first banner
+				//let's define what happens for each one:
+				
+				/*
+				the variable steps has the following structure:
+				steps:[step1,step2,...,stepN]
+				On each step/transition we define the transition for each one of the areas in the banner
+				For the first banner for example, we have 3 areas, each one with a specific number
+				of images (the images inside of the "ca_wrap" div). One image is shown as default, 
+				which for our examples is always the first one (1). 
+				So as an example, our first step/transition can be:
+				[{"to" : "2"}, {"effect": "zoomOutRotated-zoomInRotated"}],
+				[{"to" : "1"}, {}],
+				[{"to" : "2"}, {"effect": "slideOutRight-slideInRight"}]
+				This means that for the first transition, the first and third areas are going to show
+				their second image, and the second area remains untouched. When we change each image we 
+				apply a specific effect, which is defined in the plugin.
+				*/
+				$('#ca_banner1').banner({
+					steps : [
+						[
+							//1 step:
+							[{"to" : "2"}, {"effect": "zoomOutRotated-zoomInRotated"}],
+							[{"to" : "2"}, {}],
+							[{"to" : "2"}, {"effect": "slideOutRight-slideInRight"}]
+						],
+						[
+							//2 step:
+							[{"to" : "3"}, {"effect":"slideOutTop-slideInTop"}],
+							[{"to" : "1"}, {"effect": "zoomOut-zoomIn"}],
+							[{"to" : "3"}, {"effect": "slideOutRight-slideInRight"}]
+						],
+						[
+							//3 step:
+							[{"to" : "4"}, {"effect": "zoomOut-zoomIn"}],
+							[{"to" : "4"}, {"effect": "slideOutRight-slideInRight"}],
+							[{"to" : "4"}, {"effect": "slideOutRight-slideInRight"}]
+						],
+						[
+							//4 step
+							[{"to" : "5"}, {"effect": "slideOutBottom-slideInTop"}],
+							[{"to" : "5"}, {"effect": "slideOutRight-slideInRight"}],
+							[{"to" : "5"}, {"effect": "zoomOut-zoomIn"}]
+						],
+						[
+							//5 step
+							[{"to" : "1"}, {"effect": "slideOutLeft-slideInLeft"}],
+							[{"to" : "1"}, {"effect": "zoomOut-zoomIn"}],
+							[{"to" : "1"}, {"effect": "slideOutRight-slideInRight"}]
+						]
+					],
+					total_steps	: 5,
+					speed : 4000
+				});
+            });
+        </script>
+    </body>
+</html>

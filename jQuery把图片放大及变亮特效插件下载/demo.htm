@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>imgMagnifier-Download by http://sc.xueit.com</title>
+    <style type="text/css">
+    *{margin:0; padding:0; border:none;}
+	body{width:60em; padding-left:5em;}
+    ul{padding:1em 0 5em 1em; list-style:georgian inside;}
+    pre{background-color:rgb(248,248,232);}
+    a.imgMagnifier{}
+    a.imgMagnifier img{/* width:300px; height:200px;*/}
+    
+    .imgMagnifierWrap *{position:absolute;background:#fff;}
+    .imgMagnifierWrap .tipboxHover{width:80px; height:60px; filter:alpha(opacity=30);opacity:.3;display:none;}
+    .imgMagnifierWrap .imgOriginal{display:none;z-index:9999;overflow:hidden; width:400px; height:400px;
+		background-color:#cdf; background-repeat:no-repeat; text-align:center;border:1px solid #555; }
+    .imgMagnifierWrap .overlay{cursor:crosshair;filter:alpha(opacity=0);opacity:0;}
+    </style>
+    <script src="jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="chili/jquery.chili-2.2.js"></script>
+    <script type="text/javascript" src="chili/recipes.js"></script>
+    <script type="text/javascript">
+	$(function(){
+			   ChiliBook.recipeFolder = "chili/";
+			   $('pre>code').chili();
+			   });
+	</script>
+    <script type="text/javascript">
+	(function($){
+		$.imgPreloader=function(url,eventLists){
+						var img=new Image();
+						var $img=$(img);
+						img.src=url;
+						$.each(eventLists,function(type,fn){
+												   $img.bind(type,fn);
+												   });
+						$img.trigger(img.complete?'load':'begin');
+						return $img;
+		};
+	
+		$.fn.imgPreloader=function(url,eventLists){		
+			return this.each(function(){
+									$(this).append(
+													 $.imgPreloader(url,eventLists)
+													 );
+									});
+		};
+		$.fn.imgMagnifier=function(options){			
+				return this.each(function(){
+					var cfg=$.extend({
+											width:500,
+											height:500,
+											left:12
+											},options || {});
+				
+					var $anchor=$(this);
+					var $thumb=$('img',this);
+					var $wrap=$('<div>').addClass('imgMagnifierWrap').appendTo('body');
+					var $tipbox=$('<div>').addClass('tipboxHover').appendTo($wrap);
+					//小图大小及坐标存储
+					var thumbInfo={
+						height:$thumb.outerHeight(),
+						width:$thumb.outerWidth(),
+						left:$thumb.offset().left,
+						top:$thumb.offset().top
+					};
+					//与小图等大的遮罩层，IE兼容、透明，省去判断烦恼
+					var $overlay=$('<div>').addClass('overlay').css(thumbInfo).appendTo($wrap);
+					//悬停的指示方框大小
+					var tipboxInfo={
+						width:$tipbox.width(),
+						height:$tipbox.height()
+					};
+									
+					//加载大图，默认右置
+					var $o=$('<div>').addClass('imgOriginal').appendTo($wrap)
+						.css({
+							  top:thumbInfo.top,
+							  left:thumbInfo.left+thumbInfo.width+cfg.left,
+							  width:cfg.width,
+							  height:cfg.height,
+							  lineHeight:cfg.height+'px'
+							  });
+					//感应区域计算(小图所处感应区域四边各减去指示方框各四边的1/2大小)
+					var borderLeft =thumbInfo.left+tipboxInfo.width/2;
+					var borderTop=thumbInfo.top+tipboxInfo.height/2;
+					
+					//鼠标位置存储，用以解决大图预载的load事件和小图上的mousemove事件不同步的问题
+					var mouseInfo={x:0,y:0};
+					//指示框定位
+					var setTipboxPosition=function(e){
+						mouseInfo.x=e.pageX;
+						mouseInfo.y=e.pageY;
+						$tipbox.css({
+									top:mouseInfo.y<thumbInfo.width/2+thumbInfo.top
+										?Math.max(mouseInfo.y-tipboxInfo.height/2,thumbInfo.top)
+										:Math.min(mouseInfo.y-tipboxInfo.height/2,thumbInfo.top+thumbInfo.height-tipboxInfo.height),
+									left:mouseInfo.x<thumbInfo.width/2+thumbInfo.left
+										?Math.max(mouseInfo.x-tipboxInfo.width/2,thumbInfo.left)
+										:Math.min(mouseInfo.x-tipboxInfo.width/2,thumbInfo.left+thumbInfo.width-tipboxInfo.width)
+									});	
+						setImgPosition();
+					};
+					//图片过小时自动适应
+					var autoFitPicture=function(){
+						var $i=$o.children('img');
+						if( $i.length && $i.width()>0 ){
+								if($i.width()<cfg.width){
+									cfg.width=$i.width();
+									$o.width(cfg.width);
+								}
+								if($i.height()<cfg.height){
+									cfg.height=$i.height();
+									$o.height(cfg.height);
+								}
+								setImgPosition();
+						}
+					};
+					//大图定位
+					var setImgPosition=function(){
+						//比例坐标计算
+						var ratioX=(mouseInfo.x-borderLeft)/(thumbInfo.width-tipboxInfo.width);
+						var ratioY=(mouseInfo.y-borderTop)/(thumbInfo.height-tipboxInfo.height);
+						//按有效感应范围(0~100%)快捷筛选
+						ratioX=ratioX<0?0:ratioX>1?1:ratioX;
+						ratioY=ratioY<0?0:ratioY>1?1:ratioY;
+						var $i=$o.children('img');
+							$i.css({
+									 left:-($i.width()-cfg.width)*ratioX,
+									 top:-($i.height()-cfg.height)*ratioY
+									 });
+					};
+					var isImageReady=false;
+					$overlay.data('ready',false).bind('mouseenter mouseleave',function(e){
+																				  if( ! isImageReady && e.type=='mouseenter' ){
+																						$.imgPreloader($anchor.attr('href'),{
+																							load:function(){
+																								isImageReady=true;
+																								$o.empty().append(this);
+																								setTimeout(autoFitPicture,0);
+																								},
+																							begin:function(){
+																								$o.text('loading...');
+																							},
+																							error:function(){
+																								isImageReady=true;
+																								$o.text('invalid picture!');
+																							}
+																					});
+																				  }																				
+																				  $tipbox.add($o).toggle();
+																				  })
+					.mousemove(setTipboxPosition);
+				});
+		};
+	})(jQuery);
+    </script>
+    <script type="text/javascript">
+    $(function(){
+		$('a.imgMagnifier:eq(0)').imgMagnifier({width:400});
+		$('a.imgMagnifier:eq(1)').imgMagnifier();
+		//$('a.imgMagnifier:eq(2)').imgMagnifier({width:300,height:500,left:30});
+    });
+    </script>
+</head>
+<body>
+<ul>
+  <li><a href="ep.jpg" class="imgMagnifier"><img src="ep.jpg" width="300" height="200" /></a></li>
+  <li><a href="auto.jpg" class="imgMagnifier"><img src="auto-s.jpg" width="400" height="265" /></a></li>
+</ul>
+ 
+<p>为了让本地图片、远程图片、过小的图片都适应此插件，有很多细节问题要处理。</p>
+<dl>
+<dt style="font-size:1.1em; line-height:2; font-weight:bold;">首先定义结构：</dt>
+<dd style="padding-left:2em;">
+<pre><code class="html">
+    &lt;div class=&quot;imgMagnifierWrap&quot;&gt;
+       &lt;div class=&quot;overlay&quot;&gt;&lt;!--覆盖层，鼠标的感应区域，位于小图上最方--&gt;&lt;/div&gt;
+       &lt;div class=&quot;tipboxHover&quot;&gt;&lt;!--小图上方的悬停提示方框--&gt;&lt;/div&gt;
+       &lt;div class=&quot;imgOriginal&quot;&gt;&lt;!--装载大图的容器，绝对定位&lt;img src=&quot;bigOne.jpg&quot; /&gt;&lt;!--前景大图，绝对定位--&gt;&lt;/div&gt;
+    &lt;/div&gt;
+</code>
+</pre>
+<pre><code class="css">
+    &lt;!--样式--&gt;
+    &lt;style type=&quot;text/css&quot;&gt;
+    .imgMagnifierWrap *{position:absolute;background:#fff;}
+    .imgMagnifierWrap .tipboxHover{width:80px; height:60px; filter:alpha(opacity=30);opacity:.3;display:none;}
+    .imgMagnifierWrap .imgOriginal{display:none;z-index:9999;overflow:hidden; width:400px; height:400px;
+		background-color:#cdf; background-repeat:no-repeat; text-align:center;border:1px solid #555; }
+    .imgMagnifierWrap .overlay{cursor:crosshair;filter:alpha(opacity=0);opacity:0;}
+    &lt;style&gt;
+</code></pre>
+</dd>
+<dt style="font-size:1.1em; line-height:2; font-weight:bold;">然后考虑图片预加载:</dt>
+<dd style="padding-left:2em;">
+<pre><code class="js">
+    $.imgPreloader=function(url,eventLists){
+        var img=new Image();
+        var $img=$(img);
+        img.src=url;
+        $.each(eventLists,function(type,fn){
+                        $img.bind(type,fn);
+                        });
+        $img.trigger(img.complete?'load':'begin');
+        return $img;
+    };</code>
+</pre>
+</dd>
+<dt style="font-size:1.1em; line-height:2; font-weight:bold;">再计算感应区域：</dt>
+<dd style="padding-left:2em;">小图所处感应区域四边各减去指示方框各四边的1/2大小的矩形，在此之外的区域则显示到大图边界：</dd>
+<dd style="padding-left:2em;">
+<pre><code class="js">
+    var borderLeft =thumbInfo.left+tipboxInfo.width/2;
+    var ratioX=(mouseInfo.x-borderLeft)/(thumbInfo.width-tipboxInfo.width);                
+</code></pre>
+</dd>
+<dt style="font-size:1em; line-height:2; font-weight:bold;">用大图用做背景图片引发的问题：</dt>
+<dd style="padding-left:2em;">用隐藏的前景图片预加载，load事件判断时机，ie,chrome正常，ff请求了两次图片，图片未缓存;</dd>
+<dd style="padding-left:2em;">换一种方式，不预载大图。改成直接在大图位置用覆盖层做“loading”后,chrome下表现为渐进加载图片，非chrome是直接显示，略有遗憾。</dd>
+ 
+<dt style="font-size:1.1em; line-height:2; font-weight:bold;">最终结果，把大图用做前景图片：</dt>
+<dd style="padding-left:2em;">优势在于，大图的load和error事件都可以正常工作：
+<pre><code class="js">
+    $.imgPreloader($anchor.attr('href'),{
+            load:function(){
+                isImageReady=true;
+                $o.empty().append(this);                
+                setTimeout(autoFitPicture,0);
+                },
+            begin:function(){
+                $o.text('loading...');
+            },
+            error:function(){
+                isImageReady=true;
+                $o.text('invalid picture!');
+            }
+    });</code>
+</pre>
+</dd>
+<dd style="padding-left:2em;">
+<p>大图预载的load事件和小图mousemove事件不同步的解决办法：实时存储鼠标坐标，把提示方框定位和大图定位的方法分离。</p>
+<pre><code class="js">
+	//鼠标位置存储
+    var mouseInfo={x:0,y:0};
+    //指示框定位
+    var setTipboxPosition=function(e){
+        mouseInfo.x=e.pageX;
+        mouseInfo.y=e.pageY;
+        $tipbox.css({
+                    top:mouseInfo.y&lt;thumbInfo.width/2+thumbInfo.top
+                        ?Math.max(mouseInfo.y-tipboxInfo.height/2,thumbInfo.top)
+                        :Math.min(mouseInfo.y-tipboxInfo.height/2,thumbInfo.top+thumbInfo.height-tipboxInfo.height),
+                    left:mouseInfo.x&lt;thumbInfo.width/2+thumbInfo.left
+                        ?Math.max(mouseInfo.x-tipboxInfo.width/2,thumbInfo.left)
+                        :Math.min(mouseInfo.x-tipboxInfo.width/2,thumbInfo.left+thumbInfo.width-tipboxInfo.width)
+                    });	
+        setImgPosition();
+    };</code>
+</pre>
+</dd>
+</dl>
+<p>随便一提，如果有一种浏览器，也许会很幸运。</p>
+<p>查看：</p>
+<p><a href="http://files.cnblogs.com/ambar/demos/imgMagnifier/demo.htm" target="_blank">/Files/ambar/demos/imgMagnifier/demo.htm</a></p>
+</body>
+</html>
